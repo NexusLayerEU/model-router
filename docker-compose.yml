@@ -1,0 +1,52 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: modelrouter-backend:latest
+    container_name: modelrouter-backend
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    volumes:
+      # Persist H2 database (stores API keys and provider config)
+      - modelrouter-data:/app/data
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:/app/data/router-config;DB_CLOSE_ON_EXIT=FALSE
+      - IDENTITY_SERVER_URL=${IDENTITY_SERVER_URL:-http://192.168.68.111:3007}
+      - WATCHGRID_URL=${WATCHGRID_URL:-http://192.168.68.111:8085}
+      - WATCHGRID_SDK_KEY=${WATCHGRID_SDK_KEY:-wg_sdk_N3HhsteM63BzOh-x8h6exu3Ay7XmPcGzHrNvQB9FsrQ}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/v1/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    networks:
+      - modelrouter-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: modelrouter-frontend:latest
+    container_name: modelrouter-frontend
+    restart: unless-stopped
+    ports:
+      - "3002:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - modelrouter-net
+
+volumes:
+  modelrouter-data:
+    name: modelrouter-data
+
+networks:
+  modelrouter-net:
+    name: modelrouter-net
