@@ -18,7 +18,7 @@ Your code  →  POST /v1/messages  →  ModelRouter  →  Claude / Gemini / Olla
 ```
 
 **Change your LLM provider platform-wide with a single config change — no code edits.**  
-**All 8 Nexlayer products point here. One gateway to rule them all.**
+**All 8 NexusLayer products point here. One gateway to rule them all.**
 
 [Quick Start](#-quick-start) · [API Reference](#-api-reference) · [Provider Setup](#-provider-setup) · [Architecture](#️-architecture)
 
@@ -71,7 +71,7 @@ Anthropic SDK"]
         FM["🌊 FlowMesh
 LLM Nodes"]
         WL["📡 WikiLLM"]
-        OTHER["Other Nexlayer
+        OTHER["Other NexusLayer
 Products"]
     end
 
@@ -94,7 +94,7 @@ generativeai.googleapis.com"]
 localhost:11434"]
     end
 
-    subgraph Platform["🔗 Nexlayer Platform"]
+    subgraph Platform["🔗 NexusLayer Platform"]
         AV["🔐 AgentVault
 (API keys)"]
         WG["📊 WatchGrid
@@ -143,7 +143,7 @@ sequenceDiagram
 ### 1. Start ModelRouter
 
 ```bash
-git clone https://github.com/nexlayer/modelrouter
+git clone https://github.com/nexuslayer/modelrouter
 cd modelrouter
 docker compose up -d
 ```
@@ -183,7 +183,7 @@ curl -X POST http://localhost:8082/v1/messages \
 # "Working"
 ```
 
-> **That's it.** Every Nexlayer product using `ANTHROPIC_BASE_URL=http://localhost:8082` now routes through ModelRouter. Switch providers in the Admin UI — no code changes anywhere. 🎉
+> **That's it.** Every NexusLayer product using `ANTHROPIC_BASE_URL=http://localhost:8082` now routes through ModelRouter. Switch providers in the Admin UI — no code changes anywhere. 🎉
 
 ---
 
@@ -464,7 +464,7 @@ curl -s -X PUT http://localhost:8082/api/admin/config \
 
 ## 🔀 Integrations
 
-ModelRouter sits at the center of the Nexlayer LLM stack. Every product that makes LLM calls goes through here.
+ModelRouter sits at the center of the NexusLayer LLM stack. Every product that makes LLM calls goes through here.
 
 | Direction | Product | Integration |
 |-----------|---------|-------------|
@@ -476,7 +476,7 @@ ModelRouter sits at the center of the Nexlayer LLM stack. Every product that mak
 | ➡️ Reads keys from | 🔐 **AgentVault** | Provider API keys fetched at startup and on switch |
 
 ```bash
-# Standard env pattern — set this in every Nexlayer product
+# Standard env pattern — set this in every NexusLayer product
 ANTHROPIC_API_KEY=router
 ANTHROPIC_BASE_URL=http://modelrouter:8082
 ```
@@ -501,7 +501,7 @@ Or via MCP tool for admin operations:
   "mcpServers": {
     "modelrouter": {
       "command": "npx",
-      "args": ["@nexlayer/modelrouter-mcp"],
+      "args": ["@nexuslayer/modelrouter-mcp"],
       "env": {
         "MODELROUTER_URL": "http://localhost:8082"
       }
@@ -592,13 +592,13 @@ modelrouter/
 
 ## 📄 License
 
-MIT © Nexlayer — see [LICENSE](LICENSE) for details.
+MIT © NexusLayer — see [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-**Part of the Nexlayer AI Platform**
+**Part of the NexusLayer AI Platform**
 
 [🔐 AgentVault](../AgentVault) · [🌊 FlowMesh](../flowmesh) · [📊 WatchGrid](../watchgrid) · [🧠 BrainVault](../BrainVault) · [🤖 AgentShop](../AIAgentRental)
 

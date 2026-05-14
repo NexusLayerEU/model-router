@@ -400,7 +400,7 @@ report = client.messages.create(
 
 ### AgentVault — store and inject provider keys
 
-[AgentVault](http://192.168.68.111) is the secrets manager for the NextLayer stack. Store provider API keys there and inject them into ModelRouter at startup or on rotation.
+[AgentVault](http://192.168.68.111) is the secrets manager for the NexusLayer stack. Store provider API keys there and inject them into ModelRouter at startup or on rotation.
 
 **Store a secret in AgentVault:**
 
