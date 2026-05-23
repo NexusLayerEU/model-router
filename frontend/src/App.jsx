@@ -8,12 +8,20 @@ import AnthropicConfig from './components/AnthropicConfig'
 import GeminiConfig from './components/GeminiConfig'
 import OllamaConfig from './components/OllamaConfig'
 import TestConsole from './components/TestConsole'
+import Login from './pages/Login'
 import { RefreshCw, AlertTriangle } from 'lucide-react'
 
+const TOKEN_KEY = 'modelrouter_token'
+
 export default function App() {
+  const [authed, setAuthed] = useState(!!localStorage.getItem(TOKEN_KEY))
   const [config, setConfig] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  if (!authed) {
+    return <Login />
+  }
 
   const loadConfig = async () => {
     setLoading(true)
