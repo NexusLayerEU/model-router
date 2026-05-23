@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { getConfig } from './services/api'
 import Header from './components/Header'
+import PlanBanner from './components/PlanBanner'
 import ProviderSelector from './components/ProviderSelector'
 import AnthropicConfig from './components/AnthropicConfig'
 import GeminiConfig from './components/GeminiConfig'
@@ -74,6 +75,7 @@ export default function App() {
         }}
       />
       <Header activeProvider={activeProvider} />
+      <PlanBanner />
 
       <main className="max-w-5xl mx-auto px-6 py-8 space-y-6">
         {/* Provider switcher */}
