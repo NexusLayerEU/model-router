@@ -29,6 +29,14 @@ logging:
     com.modelrouter: INFO
     org.springframework.web: WARN
 
+jwt:
+  secret: ${JWT_SECRET:nexuslayer-shared-sso-secret-change-in-production-64chars!!}
+  expiration: 86400000
+
+sso:
+  identity-server-url: ${IDENTITY_SERVER_URL:http://192.168.68.111:8087}
+  product-name: modelrouter
+
 watchgrid:
   url: ${WATCHGRID_URL:http://192.168.68.111:8085}
   sdk-key: ${WATCHGRID_SDK_KEY:}
