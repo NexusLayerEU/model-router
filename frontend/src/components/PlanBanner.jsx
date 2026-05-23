@@ -10,7 +10,7 @@ export default function PlanBanner() {
     const trialActive = now < trialEndMs;
     const daysLeft = Math.ceil((trialEndMs - now) / (24 * 60 * 60 * 1000));
 
-    if (tier === 'PRO') return null;
+    if (tier === 'PRO' || tier === 'MAX') return null;
     if (trialActive) return (
       <div style={{ background: '#22c55e11', borderBottom: '1px solid #22c55e33', padding: '8px 24px', fontSize: 13, color: '#86efac', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span>Free trial — <strong>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</strong> remaining</span>

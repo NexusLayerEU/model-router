@@ -3,8 +3,9 @@ package com.modelrouter.security;
 public record SsoUserDetails(String email, String name, String role, String tier,
                               long trialStartedAt, Long planExpiresAt) {
     public boolean isProActive() {
-        return "PRO".equals(tier) && (planExpiresAt == null || planExpiresAt > System.currentTimeMillis());
+        return ("PRO".equals(tier) || "MAX".equals(tier)) && (planExpiresAt == null || planExpiresAt > System.currentTimeMillis());
     }
+    public boolean isMax() { return "MAX".equals(tier); }
     public boolean isTrialActive() {
         return System.currentTimeMillis() < trialStartedAt + 7L * 24 * 60 * 60 * 1000;
     }
